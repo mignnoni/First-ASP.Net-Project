@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace APIWeb.Models
+namespace EFCore.Domain
 {
-    public class Hero
+    public class Battle
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public SecretIdentity SecretIdentity { get; set; }
-        public List<Weapon> Weapons { get; set; }
+        public string Description { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
         public List<HeroBattle> HeroesBattles { get; set; }
-
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace APIWeb.Models
+namespace EFCore.Domain1
 {
     public class Battle
     {

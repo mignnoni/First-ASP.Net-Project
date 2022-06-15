@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace APIWeb.Models
+namespace EFCore.Domain1
 {
-    public class SecretIdentity
+    public class HeroBattle
     {
-        public int Id { get; set; }
-        public string RealName { get; set; }
         public int HeroId { get; set; }
         public Hero Hero { get; set; }
+        public int BattleId { get; set; }
+        public Battle Battle { get; set; }
     }
 }

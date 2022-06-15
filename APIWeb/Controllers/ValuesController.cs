@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EFCore.Domain1;
+using EFCore.Repo1;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,18 +12,28 @@ namespace APIWeb.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public readonly HeroContext _context;
+        public ValuesController(HeroContext context)
         {
-            return new string[] { "value1", "value2" };
+            _context = context;
+        }
+        // GET api/values
+        [HttpGet("")]
+        public ActionResult Get(string name)
+        {
+            var listHero = _context.Heroes
+                .ToList();
+            return Ok(listHero);
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        [HttpGet("{heroName}")]
+        public ActionResult CreateHero(string heroName)
         {
-            return "value";
+            var hero = new Hero { Name = heroName };
+                _context.Heroes.Add(hero);
+                _context.SaveChanges();
+            return Ok();
         }
 
         // POST api/values
@@ -40,6 +52,11 @@ namespace APIWeb.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var hero = _context.Heroes
+                               .Where(x => x.Id == id)
+                               .Single();
+            _context.Heroes.Remove(hero);
+            _context.SaveChanges();
         }
     }
 }
