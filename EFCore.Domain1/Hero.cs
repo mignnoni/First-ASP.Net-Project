@@ -13,5 +13,9 @@ namespace EFCore.Domain1
         public List<Weapon> Weapons { get; set; }
         public List<HeroBattle> HeroesBattles { get; set; }
 
+        public static implicit operator Task<object>(Hero v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
